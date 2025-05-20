@@ -10,7 +10,6 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -20,6 +19,19 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+//to redirect root URL to your Home page
+app.MapGet("/", context =>
+{
+    context.Response.Redirect("/HomePage/Home");
+    return Task.CompletedTask;
+});
+
+app.MapGet("/ViewMembership", context =>
+{
+    context.Response.Redirect("/Pages/ViewMyMembership");
+    return Task.CompletedTask;
+});
 
 app.MapRazorPages();
 

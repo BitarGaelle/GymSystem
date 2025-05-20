@@ -6,4 +6,35 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="wwwroot\lib\**" />
+    <Content Remove="wwwroot\lib\**" />
+    <EmbeddedResource Remove="wwwroot\lib\**" />
+    <None Remove="wwwroot\lib\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Pages\Error.cshtml.cs" />
+    <Compile Remove="Pages\Privacy.cshtml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Pages\Error.cshtml" />
+    <Content Remove="Pages\Privacy.cshtml" />
+    <Content Remove="wwwroot\css\HomePageLayoutCSS\AboutSection.module.css" />
+    <Content Remove="wwwroot\css\HomePageLayoutCSS\ContactUs.module.css" />
+    <Content Remove="wwwroot\css\HomePageLayoutCSS\JoinButton.module.css" />
+    <Content Remove="wwwroot\css\HomePageLayoutCSS\NavBar.module.css" />
+    <Content Remove="wwwroot\css\HomePageLayoutCSS\OptionSection.module.css" />
+    <Content Remove="wwwroot\css\HomePageLayoutCSS\StyleSheet.css" />
+    <Content Remove="wwwroot\css\HomePageLayoutCSS\TopImage.module.css" />
+    <Content Remove="wwwroot\favicon.ico" />
+    <Content Remove="wwwroot\js\site.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Pages\Shared\" />
+    <Folder Include="wwwroot\js\" />
+  </ItemGroup>
+
 </Project>
