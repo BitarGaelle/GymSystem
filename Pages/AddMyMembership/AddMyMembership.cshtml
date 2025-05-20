@@ -1,0 +1,85 @@
+﻿@page
+@model AddMyMembershipModel
+@{
+    ViewData["Title"] = "Add My Membership";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Add My Membership</title>
+    <link rel="stylesheet" href="/css/PagesCSS/AddMyMembership.css" />
+</head>
+<body class="addmembershippage">
+
+    <h1>Add My Membership</h1>
+
+    @if (Model.ShowForm)
+    {
+        @if (Model.ShowForm)
+        {
+            <div class="App">
+                <form method="post">
+                    <label for="FirstName">First Name*</label>
+                    <input type="text" id="FirstName" name="FirstName" value="@Model.FirstName" required />
+
+                    <label for="LastName">Last Name*</label>
+                    <input type="text" id="LastName" name="LastName" value="@Model.LastName" required />
+
+                    <label for="Address">Address*</label>
+                    <input type="text" id="Address" name="Address" value="@Model.Address" required />
+
+                    <label for="Email">Email*</label>
+                    <input type="email" id="Email" name="Email" value="@Model.Email" required />
+
+                    <label for="Contact">Contact*</label>
+                    <input type="tel" id="Contact" name="Contact" value="@Model.Contact" required />
+
+                    <label for="MembershipType">Select Membership*</label>
+                    <select id="MembershipType" name="MembershipType" required onchange="this.form.submit()">
+                        <option value="" disabled selected>Select an option</option>
+                        @foreach (var price in Model.Prices)
+                        {
+                            var selected = Model.MembershipType == price.Key ? "selected" : "";
+                            <option value="@price.Key" selected="@selected">@price.Key</option>
+                        }
+
+                    </select>
+
+                    <label for="StartDate">Start Date*</label>
+                    <input type="date" id="StartDate" name="StartDate" value="@Model.StartDate.ToString("yyyy-MM-dd")" min="@DateTime.Today.ToString("yyyy-MM-dd")" required onchange="this.form.submit()" />
+
+                    <label for="EndDate">End Date*</label>
+                    <input type="date" id="EndDate" name="EndDate" value="@Model.EndDate.ToString("yyyy-MM-dd")" readonly required />
+
+                    <label for="PaymentMethod">Payment Method*</label>
+                    <select id="PaymentMethod" name="PaymentMethod" required>
+                        <option value="creditCard" selected>Credit Card</option>
+                        <option value="onSite">On Site (Pay in gym)</option>
+                    </select>
+
+                    <h3>Total Price: $@Model.TotalPrice</h3>
+
+                    <button type="submit" asp-page-handler="Reset">Reset</button>
+                    <button type="submit" asp-page-handler="Submit">Proceed to Payment</button>
+                </form>
+            </div>
+        }
+
+        
+    }
+    else
+    {
+        <div>
+            <h2>Thank You for Choosing Us</h2>
+            <form method="get" asp-page="/UserPage/ViewMyMembership">
+                <button type="submit">View My Membership</button>
+            </form>
+        </div>
+    }
+</body>
+</html>
+
+
+
