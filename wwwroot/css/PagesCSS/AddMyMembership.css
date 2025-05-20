@@ -1,6 +1,6 @@
 /* Reset and apply full-page background */
 .addmembershippage {
-    background-image: url('../images/backgroundAddMemb.jpg');
+    background-image: url('/images/backgroundAddMemb.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
