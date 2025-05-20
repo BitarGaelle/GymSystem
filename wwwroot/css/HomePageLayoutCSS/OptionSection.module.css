@@ -1,0 +1,130 @@
+/* OptionSection Styles */
+.activitiesContainer {
+    padding: 50px;
+    background-color: #000000; 
+    text-align: center;
+}
+
+.sectionTitle {
+    font-size: 45px; 
+    font-weight: bold; 
+    font-style: italic;
+    color: #ffd000;
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    font-family:Verdana, Geneva, Tahoma, sans-serif; 
+    background: linear-gradient(45deg, #ffd000, #ffcb22); 
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent; 
+    text-shadow: 2px 2px 5px rgba(82, 61, 61, 0.633); 
+    padding: 5px 10px; 
+    transition: transform 0.3s ease, color 0.3s ease; 
+}
+
+.description {
+    font-size: 18px; 
+    color: #ffffff;
+    font-family: 'Arial', Helvetica, sans-serif;
+    margin-top: 15px;
+    padding: 0 10px;
+    line-height: 1.8;
+    font-weight: 300; /* Lighter font weight for elegance */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); /* Add a subtle shadow for depth */
+    letter-spacing: 1px; /* Add space between letters for better readability */
+    max-width: 800px; /* Limit width to avoid stretching */
+    margin-left: auto; 
+    margin-right: auto; /* Center the paragraph */
+    transition: color 0.3s ease, transform 0.3s ease; 
+    color: #beb692; /* Change color to yellow on hover for interactivity */
+    transform: translateY(-5px);
+}
+
+.description::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #ffd000, #ffcb22);
+    z-index: -1;
+    filter: blur(8px); /* Soft background blur */
+    opacity: 0.2;
+}
+
+.activityLink {
+    text-decoration: none; /* Removes underline */
+    color: inherit; /* Inherits color from parent, preventing any default link color */
+}
+
+.activities {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Create a 3-column grid */
+    gap: 30px; /* Gap between the cards */
+    justify-items: center; /* Centers the cards horizontally */
+    margin-bottom: 50px;
+    margin-top: 60px;
+}
+
+.activityCard {
+    background-color: #997b27; /* White background */
+    width: 100%; /* Ensure it takes up full width of the grid */
+    max-width: 320px; /* Limit the width to avoid stretching */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(177, 101, 101, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    text-align: center; /* Center the text inside the card */
+}
+
+.activityCard:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.activityImage {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.activityTitle {
+    font-size: 20px; 
+    font-weight: bold;
+    color:#333;
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    font-family:Verdana, Geneva, Tahoma, sans-serif; 
+    -webkit-background-clip: text;
+    background-clip: text;
+    text-shadow: 2px 2px 5px rgba(82, 61, 61, 0.633); 
+    padding: 5px 10px; 
+    transition: transform 0.3s ease, color 0.3s ease; 
+}
+
+/* Responsive Design: Mobile View */
+@media (max-width: 768px) {
+    .activities {
+        grid-template-columns: 1fr 1fr; /* 2-column layout on smaller screens */
+    }
+
+    .activityCard {
+        max-width: 100%; /* Allow the card to be wider on small screens */
+    }
+
+
+    .sectionTitle {
+        font-size: 30px; /* Reduce font size for smaller screens */
+    }
+
+    .activityTitle {
+        font-size: 16px; /* Reduce font size for smaller screens */
+    }
+
+    .description {
+        font-size: 16px; /* Adjust font size for mobile */
+    }
+}

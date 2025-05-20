@@ -1,0 +1,28 @@
+.joinButton {
+  font-size: 20px;
+  font-weight: bold;
+  color: rgba(52, 40, 4, 0.781); /* Text color */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-family: 'Impact', sans-serif;
+  background: #ffd000; /* Yellow background color */
+  padding: 15px 30px; /* Adjust padding */
+  border: none;
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+  text-align: center; /* Center the text */
+  display: block; /* Make the button block level */
+  width: fit-content; /* Let the button size fit the text */
+  margin: 0 auto; /* Center button horizontally if in a container */
+}
+
+.joinButton:hover {
+  transform: scale(1.1);
+  background-color: #ffcb22;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
+
+.joinButton:active {
+  transform: scale(1);
+}

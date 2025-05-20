@@ -1,0 +1,5 @@
+.homepage {
+    background-color: black; /* Set the background to black */
+    color: white; /* Optional: Set text color to white for better contrast */
+    min-height: 100vh; /* Ensure it covers the full viewport height */
+}

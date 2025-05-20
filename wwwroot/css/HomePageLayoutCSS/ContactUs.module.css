@@ -1,0 +1,91 @@
+/* Footer Container */
+.footer {
+    padding: 40px 0;
+    color: rgba(179, 169, 169, 0.879);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Important to ensure pseudo-element is positioned correctly */
+    z-index: 1; 
+    background: none;
+}
+
+/* Footer Content */
+.footerContent {
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+    z-index: 2; 
+}
+
+/* Footer Description */
+.footerDescription {
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.5;
+}
+
+/* Contact Info Section */
+.contactInfo {
+    margin-bottom: 20px;
+}
+
+.contactInfo p {
+    font-size: 16px;
+    margin: 5px 0;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Social Icons Section */
+.socialIcons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+
+}
+
+.socialIcon {
+    font-size: 30px;
+    color:  rgb(134, 123, 123);;
+    transition: color 0.3s ease;
+}
+
+/* Hover effect for icons */
+.socialIcon:hover {
+    color: #ffd000; /* Change to yellow on hover */
+}
+
+/* Optional Background Image */
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../../images/Contact.png'); /* Replace with the correct URL */
+    background-size: cover;
+    background-position: center;
+    opacity: 1; /* Adjust opacity to make it subtly visible */
+    z-index: -1; 
+
+}
+
+
+.footerButton {
+    padding: 3px 8px;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: #ffd000;
+    color: black;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.footerButton:hover {
+    background-color: #0056b3;
+}

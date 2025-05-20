@@ -1,0 +1,126 @@
+/* Reset and apply full-page background */
+.addmembershippage {
+    background-image: url('../images/backgroundAddMemb.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Center the form container */
+.App {
+    position: relative;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 500px;
+    text-align: center;
+    margin: 20px auto;
+    z-index: 1;
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Form heading */
+h1 {
+    font-size: 1.5rem; /* Use rem for scalability */
+    text-align: center;
+    color: #ffd000;
+}
+
+/* Inputs, Labels, Buttons */
+fieldset {
+    border: none;
+}
+
+input {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 14px; /* Adjusted for readability */
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    display: inline;
+    width: 10%;
+}
+
+select {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+label {
+    font-size: 15px;
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+    margin-bottom: 5px;
+    text-align: left;
+    color: #555;
+    font-weight: bold;
+}
+
+/* Button Styling */
+button {
+    padding: 15px;
+    border-radius: 10px;
+    margin: 15px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    background-color: #ffd000;
+    width: 80%;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #e5c100; /* Slightly darker shade for hover effect */
+}
+
+/* Textarea Styling */
+textarea {
+    resize: none;
+    width: 98%;
+    min-height: 100px;
+    max-height: 150px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .App {
+        width: 90%; /* Take up most of the screen on small devices */
+        padding: 15px;
+    }
+
+    button {
+        width: 80%; /* Button should take up more width on smaller screens */
+        font-size: 14px; /* Smaller font size on small devices */
+    }
+
+    h1 {
+        font-size: 1.2rem; /* Smaller heading on smaller screens */
+    }
+
+    input, select {
+        font-size: 14px; /* Adjust input font size for small screens */
+    }
+
+    .activityList {
+        flex-direction: column;
+    }
+}

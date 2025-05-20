@@ -1,0 +1,51 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+
+  }
+  
+  .navbarLogo {
+    font-size: 30px; 
+    font-weight: bold; 
+    color: #ffd000;
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    font-family: 'Impact', sans-serif; 
+    background: linear-gradient(45deg, #ffd000, #ffcb22); 
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent; 
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); 
+    padding: 5px 10px; 
+    transition: transform 0.3s ease, color 0.3s ease; 
+  }
+  
+  .navbarLinks {
+    display: flex;
+    gap: 60px;
+  }
+  
+  .navbarLinks a {
+    font-size: 20px; 
+    font-weight: bold; 
+    color: #ffd000;
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    font-family:Verdana, Geneva, Tahoma, sans-serif; 
+    background: linear-gradient(45deg, #ffd000, #ffcb22); 
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent; 
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.633); 
+    padding: 5px 10px; 
+    transition: transform 0.3s ease, color 0.3s ease; 
+  }
+  
+  .navbarLinks a:hover {
+    color: #efb906; /* Orange color for hover, complementing the yellow */
+    transform: scale(1.1); /* Slight zoom effect on hover for emphasis */
+  }
+
+  

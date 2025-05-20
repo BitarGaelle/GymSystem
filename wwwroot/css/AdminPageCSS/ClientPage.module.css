@@ -1,0 +1,214 @@
+/* Main container styling */
+.clientpage {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    background: linear-gradient(135deg, #4a90e2, #50e3c2); /* Gradient background */
+    border-radius: 15px;
+    font-family: 'Arial', sans-serif;
+    color: #ffffff;
+    min-height: 100vh;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Error message styling */
+.error {
+    color: #e74c3c;
+    background-color: #2c3e50;
+    border: 2px solid #e74c3c;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* Table container styling */
+.table {
+    background-color: #1f1f1f; /* Dark background for the table */
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    margin-top: 2rem;
+}
+
+/* Table header styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #ffffff;
+}
+
+table thead tr {
+    background-color: #2c3e50;
+    color: #f39c12; /* Gold for headers */
+    font-size: 1.1rem;
+}
+
+table thead th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: bold;
+    border-bottom: 2px solid #34495e;
+}
+
+/* Table row styling */
+table tbody tr {
+    border-bottom: 1px solid #34495e;
+    background-color: #333333; /* Consistent dark row color */
+}
+
+table tbody td {
+    background-color: black;
+    padding: 1rem;
+    font-size: 1rem;
+    color: white; /* Light gray text */
+}
+
+/* No data message styling */
+.nodata {
+    color: #bdc3c7;
+    background-color: #2c3e50;
+    border: 1px solid #34495e;
+    padding: 1.5rem;
+    border-radius: 6px;
+    text-align: center;
+    font-style: italic;
+    margin-top: 2rem;
+}
+
+.searchBar {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.searchInput {
+    width: 50%;
+    padding: 20px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.searchInput:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.searchButton {
+    padding: 15px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.searchButton:hover {
+    background-color: #0056b3;
+}
+
+.navbar {
+    width: 100%;
+    background-color: #1a1a1a; /* Dark gray for navbar */
+    display: flex;
+    justify-content: space-between; /* Space between logo and nav items */
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional shadow for navbar */
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffffff;
+    text-decoration: none; /* Prevent underline */
+}
+
+.nav {
+    display: flex; /* Align nav items horizontally */
+}
+
+.nav ul {
+    list-style: none;
+    display: flex; /* Arrange list items in a row */
+    margin: 0;
+    padding: 0;
+}
+
+.navItem {
+    padding: 10px 15px;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.navItem:hover {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+
+/* Add styles for edit and delete buttons */
+.editButton, .deleteButton {
+    padding: 5px 10px;
+    margin: 0 5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.editButton {
+    background-color: #4CAF50; /* Green for edit */
+    color: white;
+}
+
+.deleteButton {
+    background-color: #f44336; /* Red for delete */
+    color: white;
+}
+
+.editButton:hover {
+    background-color: #45a049; /* Darker green */
+}
+
+.deleteButton:hover {
+    background-color: #e53935; /* Darker red */
+}
+
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    table thead {
+        display: none; /* Hide headers on small screens */
+    }
+
+    table tbody tr {
+        display: block;
+        background-color: #333333;
+        margin-bottom: 1rem;
+        border-radius: 8px;
+    }
+
+    table tbody td {
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem;
+        border-bottom: 1px solid #34495e;
+        font-size: 1rem;
+    }
+
+    table tbody td:last-child {
+        border-bottom: none;
+    }
+}

@@ -1,0 +1,20 @@
+
+/* Minimalist Dark Theme */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #333;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 3px;
+    transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ffcb22;
+}
+

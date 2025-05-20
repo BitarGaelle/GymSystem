@@ -1,0 +1,55 @@
+.middleSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    gap: 100px; /* Space between images and text */
+    font-style: italic;
+  }
+  
+  .imageContainer {
+    display: flex;
+    gap: 50px; /* Space between the two images */
+  }
+  
+  .imageContainer img {
+    width: 300px; /* Adjust size as needed */
+    height: auto; 
+    
+    border-radius: 10px; /* Rounded corners */
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .imageContainer img:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 10px rgba(109, 94, 13, 0.745);
+  }
+  
+  .textContent {
+    max-width: 400px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: #333;
+    text-align: left;
+  }
+  
+  .textContent h2 {
+    font-size: 25px; 
+    font-weight: bold; 
+    color: #ffd000;
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    font-family:Verdana, Geneva, Tahoma, sans-serif; 
+    background: linear-gradient(45deg, #ffd000, #ffcb22); 
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent; 
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.633); 
+    padding: 5px 10px; 
+  }
+  
+  .textContent p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #cecaca;
+  }
+  
