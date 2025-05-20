@@ -18,3 +18,21 @@
     background: #ffcb22;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+.container {
+    max-width: 1200px; /* Adjust as per your design */
+    margin: 0 auto;
+    padding: 0 15px; /* Add padding for some breathing room */
+}
