@@ -1,0 +1,380 @@
+﻿.homepage {
+    background-color: black; /* Set the background to black */
+    color: white; /* Optional: Set text color to white for better contrast */
+    min-height: 100vh; /* Ensure it covers the full viewport height */
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.navbar-logo {
+    font-size: 30px;
+    font-weight: bold;
+    color: #ffd000;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: 'Impact', sans-serif;
+    background: linear-gradient(45deg, #ffd000, #ffcb22);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    padding: 5px 10px;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.navbar-links {
+    display: flex;
+    gap: 60px;
+}
+
+    .navbar-links a {
+        font-size: 20px;
+        font-weight: bold;
+        color: #ffd000;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        background: linear-gradient(45deg, #ffd000, #ffcb22);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.633);
+        padding: 5px 10px;
+        transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+        .navbar-links a:hover {
+            color: #efb906;
+            transform: scale(1.1);
+        }
+
+.top-image-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.top-image {
+    width: 100%;
+    height: 60%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.join-button-container {
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.join-button {
+    font-size: 20px;
+    font-weight: bold;
+    color: rgba(52, 40, 4, 0.781);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: 'Impact', sans-serif;
+    background: #ffd000;
+    padding: 15px 30px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+    .join-button:hover {
+        transform: scale(1.1);
+        background-color: #ffd000;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+        color: white;
+    }
+
+    .join-button:active {
+        transform: scale(1);
+    }
+
+.middle-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    gap: 100px;
+    font-style: italic;
+}
+
+.image-container {
+    display: flex;
+    gap: 50px;
+}
+
+    .image-container img {
+        width: 300px;
+        height: auto;
+        border-radius: 10px;
+        transition: transform 0.3s ease-in-out;
+    }
+
+        .image-container img:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 4px 10px rgba(109, 94, 13, 0.745);
+        }
+
+.text-content {
+    max-width: 400px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #333;
+    text-align: left;
+}
+
+    .text-content h2 {
+        font-size: 25px;
+        font-weight: bold;
+        color: #ffd000;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        background: linear-gradient(45deg, #ffd000, #ffcb22);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.633);
+        padding: 5px 10px;
+    }
+
+    .text-content p {
+        font-size: 18px;
+        line-height: 1.6;
+        color: #cecaca;
+    }
+
+/* OptionSection Styles */
+.activities-container {
+    padding: 50px;
+    background-color: #000000;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 45px;
+    font-weight: bold;
+    font-style: italic;
+    color: #ffd000;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background: linear-gradient(45deg, #ffd000, #ffcb22);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 2px 2px 5px rgba(82, 61, 61, 0.633);
+    padding: 5px 10px;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.description {
+    font-size: 18px;
+    color: #beb692;
+    font-family: 'Arial', Helvetica, sans-serif;
+    margin-top: 15px;
+    padding: 0 10px;
+    line-height: 1.8;
+    font-weight: 300;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    letter-spacing: 1px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    transition: color 0.3s ease, transform 0.3s ease;
+    transform: translateY(-5px);
+}
+
+    .description::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, #ffd000, #ffcb22);
+        z-index: -1;
+        filter: blur(8px);
+        opacity: 0.2;
+    }
+
+.activity-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.activities {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    justify-items: center;
+    margin-bottom: 50px;
+    margin-top: 60px;
+}
+
+.activity-card {
+    background-color: #997b27;
+    width: 100%;
+    max-width: 320px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(177, 101, 101, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+}
+
+    .activity-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+
+.activity-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.activity-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    -webkit-background-clip: text;
+    background-clip: text;
+    text-shadow: 2px 2px 5px rgba(82, 61, 61, 0.633);
+    padding: 5px 10px;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Responsive Design: Mobile View */
+@media (max-width: 768px) {
+    .activities {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .activity-card {
+        max-width: 100%;
+    }
+
+    .section-title {
+        font-size: 30px;
+    }
+
+    .activity-title {
+        font-size: 16px;
+    }
+
+    .description {
+        font-size: 16px;
+    }
+}
+
+/* Footer Container */
+.footer {
+    padding: 40px 0;
+    color: rgba(179, 169, 169, 0.879);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    background: none;
+}
+
+/* Footer Content */
+.footer-content {
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+    z-index: 2;
+}
+
+/* Footer Description */
+.footer-description {
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.5;
+}
+
+/* Contact Info Section */
+.contact-info {
+    margin-bottom: 20px;
+}
+
+    .contact-info p {
+        font-size: 16px;
+        margin: 5px 0;
+        font-family: 'Arial', sans-serif;
+    }
+
+/* Social Icons Section */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-icon {
+    font-size: 30px;
+    color: rgb(134, 123, 123);
+    transition: color 0.3s ease;
+}
+
+    /* Hover effect for icons */
+    .social-icon:hover {
+        color: #ffd000; /* Change to yellow on hover */
+    }
+
+/* Optional Background Image */
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/images/Contact.png'); 
+    background-size: cover;
+    background-position: center;
+    opacity: 1;
+    z-index: -1;
+}
+
+.footer-button {
+    padding: 8px 15px;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: #ffd000;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+    .footer-button:hover {
+        background-color: #0056b3;
+        color: white;
+    }

@@ -1,0 +1,92 @@
+﻿@page
+@model HomeModel
+@{
+    ViewData["Title"] = "Elevate Gym - Home";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/HomePageLayoutCSS/HomePage.css" />
+    <link rel="stylesheet" href="~/css/App.css" />
+
+</head>
+<body class="homepage">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-logo">Elevate Gym</div>
+        <div class="navbar-links">
+            <a href="/HomePage/Home">Home</a>
+            <a href="/UserPage/AddMyMembership">Register My Membership</a>
+            <a href="/UserPage/ViewMyMembership">View My Membership</a>
+        </div>
+    </nav>
+
+    <!-- Top Image Section -->
+    <div class="top-image-container">
+        <img src="/images/Home.png" alt="Top Image" class="top-image" />
+        <div class="join-button-container">
+            <a href="/UserPage/AddMyMembership" class="join-button">Join Today</a>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <div class="middle-section">
+        <div class="image-container">
+            <img src="/images/Trainer1.jpg" alt="Trainer 1" />
+            <img src="/images/Trainer2.jpg" alt="Trainer 2" />
+        </div>
+        <div class="text-content">
+            <h2>About Elevate Gym</h2>
+            <p>Elevate Gym is a state-of-the-art fitness facility...</p>
+            <p>Join us today and elevate your fitness journey!</p>
+        </div>
+    </div>
+
+    <!-- Activities Section -->
+    <div class="activities-container">
+        <h2 class="section-title">What We Offer</h2>
+        <p class="description">We offer a wide range of activities...</p>
+        <div class="activities">
+            <div class="activity-card">
+                <a href="/UserPage/ViewActivities" class="activity-link">
+                    <img src="/images/GymEquip.jpg" alt="Regular Gym" class="activity-image" />
+                    <h3 class="activity-title">Tour Our Gym</h3>
+                </a>
+            </div>
+            <div class="activity-card">
+                <a href="/UserPage/ViewActivities" class="activity-link">
+                    <img src="/images/martialarts.jpg" alt="Indoor Activities" class="activity-image" />
+                    <h3 class="activity-title">Indoor Activities</h3>
+                </a>
+            </div>
+            <div class="activity-card">
+                <a href="/UserPage/ViewActivities" class="activity-link">
+                    <img src="/images/Outdoors.jpg" alt="Outdoor Activities" class="activity-image" />
+                    <h3 class="activity-title">Outdoor Activities</h3>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-content">
+            <p class="footer-description">Reach out to us for any inquiries...</p>
+            <div class="contact-info">
+                <p>Email: elevategym@gmail.com</p>
+                <p>Phone: +961 873 562</p>
+            </div>
+            <div class="social-icons">
+                <a href="https://facebook.com/your-profile" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://twitter.com/your-profile" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://instagram.com/your-profile" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+            <a href="/AdminPage/Login" class="footer-button">Admin Login</a>
+        </div>
+    </div>
+</body>
+</html>
