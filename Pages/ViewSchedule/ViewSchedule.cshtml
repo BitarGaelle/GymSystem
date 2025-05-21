@@ -1,0 +1,66 @@
+﻿@page
+@model GymSystem.Pages.ViewSchedule.ViewScheduleModel
+@{
+    ViewData["Title"] = "Activity Schedules";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/PagesCSS/ViewSchedule.css" />
+    <link rel="stylesheet" href="~/css/App.css" />
+</head>
+
+<body class="container">
+    <h1>Activity Schedules</h1>
+
+    <p class="info-note">
+        Please note: The regular gym is open 24 hours a day, 7 days a week!
+    </p>
+
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <p class="error-message">@Model.ErrorMessage</p>
+    }
+
+    @if (Model.Loading)
+    {
+        <p>Loading schedules...</p>
+    }
+    else if (Model.Schedules?.Count > 0)
+    {
+        <table class="schedule-table">
+            <thead>
+                <tr>
+                    <th>Activity Name</th>
+                    <th>Day of the Week</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var schedule in Model.Schedules)
+                {
+                    <tr>
+                        <td>@(schedule.ActivityName ?? "N/A")</td>
+                        <td>@(schedule.DayOfWeek ?? "Not Specified")</td>
+                        <td>@(schedule.StartHour ?? "N/A")</td>
+                        <td>@(schedule.EndHour ?? "N/A")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No schedules available.</p>
+    }
+
+    <button class="back-button" onclick="location.href='/';">
+        Back to Homepage
+    </button>
+</body>
+</html>
