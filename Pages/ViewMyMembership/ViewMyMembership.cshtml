@@ -1,0 +1,65 @@
+﻿@page
+@model GymSystem.Pages.ViewMyMembership.ViewMyMembershipModel
+@{
+    ViewData["Title"] = "View My Membership";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/PagesCSS/ViewMyMembership.css" />
+
+
+</head>
+
+<body class="container">
+    <h2>View My Membership</h2>
+
+    <!-- Form for email input -->
+    <form method="post">
+        <div class="input-section">
+            <input class="emailInput" type="email" name="email" placeholder="Enter your email" required />
+            <button class="fetchButton" type="submit">View Membership</button>
+        </div>
+    </form>
+
+    <!-- Display loading state -->
+    @if (Model.Loading)
+    {
+        <p>Loading...</p>
+    }
+
+    <!-- Display error message -->
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <p class="error-message">@Model.ErrorMessage</p>
+    }
+
+    <!-- Display fetched membership data -->
+    @if (Model.MembershipData?.Count > 0)
+    {
+        <div class="membership-details">
+            @foreach (var membership in Model.MembershipData)
+            {
+                <div class="card">
+                    <h3 class="activityName">@membership.ActivityName</h3>
+                    <p class="detail"><strong>Start Date:</strong> @membership.StartDate.ToString("yyyy-MM-dd")</p>
+                    <p class="detail"><strong>End Date:</strong> @membership.EndDate.ToString("yyyy-MM-dd")</p>
+                    <p class="detail"><strong>Payment Method:</strong> @membership.PaymentMethod</p>
+                    <p class="detail"><strong>Payment Amount:</strong> $@membership.Amount</p>
+                </div>
+            }
+        </div>
+    }
+    else if (Model.HasSearched && !Model.Loading && string.IsNullOrEmpty(Model.ErrorMessage) && (Model.MembershipData == null || Model.MembershipData.Count == 0))
+    {
+        <p>No membership found for this email.</p>
+    }
+
+    <!-- Button to navigate to the schedule -->
+    <button class="scheduleButton" onclick="location.href='/ViewSchedule/ViewSchedule';">View Schedule</button>
+</body>
+</html>
