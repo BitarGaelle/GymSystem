@@ -1,4 +1,4 @@
-/* ViewSchedule.module.css */
+
 .container {
     padding: 20px;
     font-family: 'Arial', sans-serif;
@@ -46,7 +46,7 @@
     margin-top: 20px;
   }
   
-  .errorMessage {
+  .error-message {
     text-align: center;
     color: red;
     font-size: 16px;
@@ -62,7 +62,7 @@
   
 
 /* Add this to your ViewSchedule.module.css */
-.infoNote {
+.info-note {
   font-size: 14px;
   color: #4CAF50; /* Green color to make it noticeable */
   font-weight: bold;
@@ -70,7 +70,7 @@
 }
 
 /* Add this to your ViewSchedule.module.css */
-.backButton {
+.back-button {
   padding: 10px 20px;
   background-color: #ffd000;
   border: none;
@@ -81,6 +81,6 @@
   margin-top: 20px;
 }
 
-.backButton:hover {
+.back-button:hover {
   background-color: #e6c100; /* Darker shade on hover */
 }
