@@ -3,7 +3,6 @@
 @{
     ViewData["Title"] = "Add My Membership";
 }
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,57 +16,85 @@
 
     @if (Model.ShowForm)
     {
-        @if (Model.ShowForm)
-        {
-            <div class="App">
-                <form method="post">
-                    <label for="FirstName">First Name*</label>
-                    <input type="text" id="FirstName" name="FirstName" value="@Model.FirstName" required />
+        <div class="App">
+            <form method="post" id="membershipForm">
+                <label for="FirstName">First Name*</label>
+                <input type="text" id="FirstName" name="FirstName" value="@Model.FirstName" required />
 
-                    <label for="LastName">Last Name*</label>
-                    <input type="text" id="LastName" name="LastName" value="@Model.LastName" required />
+                <label for="LastName">Last Name*</label>
+                <input type="text" id="LastName" name="LastName" value="@Model.LastName" required />
 
-                    <label for="Address">Address*</label>
-                    <input type="text" id="Address" name="Address" value="@Model.Address" required />
+                <label for="Address">Address*</label>
+                <input type="text" id="Address" name="Address" value="@Model.Address" required />
 
-                    <label for="Email">Email*</label>
-                    <input type="email" id="Email" name="Email" value="@Model.Email" required />
+                <label for="Email">Email*</label>
+                <input type="email" id="Email" name="Email" value="@Model.Email" required />
 
-                    <label for="Contact">Contact*</label>
-                    <input type="tel" id="Contact" name="Contact" value="@Model.Contact" required />
+                <label for="Contact">Contact*</label>
+                <input type="tel" id="Contact" name="Contact" value="@Model.Contact" required />
 
-                    <label for="MembershipType">Select Membership*</label>
-                    <select id="MembershipType" name="MembershipType" required onchange="this.form.submit()">
+                <label for="MembershipType">Select Membership*</label>
+                <select id="MembershipType" name="MembershipType" required onchange="document.getElementById('priceUpdateInput').value='true'; this.form.submit();">
+
+                    @if (string.IsNullOrEmpty(Model.MembershipType))
+                    {
                         <option value="" disabled selected>Select an option</option>
-                        @foreach (var price in Model.Prices)
+                    }
+                    else
+                    {
+                        <option value="" disabled>Select an option</option>
+                    }
+
+                    @foreach (var price in Model.Prices)
+                    {
+                        if (Model.MembershipType == price.Key)
                         {
-                            var selected = Model.MembershipType == price.Key ? "selected" : "";
-                            <option value="@price.Key" selected="@selected">@price.Key</option>
+                            <option value="@price.Key" selected>@price.Key</option>
                         }
+                        else
+                        {
+                            <option value="@price.Key">@price.Key</option>
+                        }
+                    }
+                </select>
 
-                    </select>
+                <label for="StartDate">Start Date*</label>
+                <input type="date" id="StartDate" name="StartDate"
+                       value="@Model.StartDate.ToString("yyyy-MM-dd")"
+                       min="@DateTime.Today.ToString("yyyy-MM-dd")" required />
 
-                    <label for="StartDate">Start Date*</label>
-                    <input type="date" id="StartDate" name="StartDate" value="@Model.StartDate.ToString("yyyy-MM-dd")" min="@DateTime.Today.ToString("yyyy-MM-dd")" required onchange="this.form.submit()" />
+                <label for="EndDate">End Date*</label>
+                <input type="date" id="EndDate" name="EndDate"
+                       value="@Model.EndDate.ToString("yyyy-MM-dd")" readonly required />
 
-                    <label for="EndDate">End Date*</label>
-                    <input type="date" id="EndDate" name="EndDate" value="@Model.EndDate.ToString("yyyy-MM-dd")" readonly required />
-
-                    <label for="PaymentMethod">Payment Method*</label>
-                    <select id="PaymentMethod" name="PaymentMethod" required>
+                <label for="PaymentMethod">Payment Method*</label>
+                <select id="PaymentMethod" name="PaymentMethod" required>
+                    @if (Model.PaymentMethod == "creditCard")
+                    {
                         <option value="creditCard" selected>Credit Card</option>
                         <option value="onSite">On Site (Pay in gym)</option>
-                    </select>
+                    }
+                    else if (Model.PaymentMethod == "onSite")
+                    {
+                        <option value="creditCard">Credit Card</option>
+                        <option value="onSite" selected>On Site (Pay in gym)</option>
+                    }
+                    else
+                    {
+                        <option value="creditCard">Credit Card</option>
+                        <option value="onSite">On Site (Pay in gym)</option>
+                    }
+                </select>
 
-                    <h3>Total Price: $@Model.TotalPrice</h3>
+                <h3>Total Price: $@Model.TotalPrice</h3>
 
-                    <button type="submit" asp-page-handler="Reset">Reset</button>
-                    <button type="submit" asp-page-handler="Submit">Proceed to Payment</button>
-                </form>
-            </div>
-        }
+                <!-- Hidden input to identify price update form submit -->
+                <input type="hidden" id="priceUpdateInput" name="IsPriceUpdate" value="false" />
 
-        
+                <button type="submit" asp-page-handler="Reset">Reset</button>
+                <button type="submit" name="handler" value="Submit">Proceed to Payment</button>
+            </form>
+        </div>
     }
     else
     {
@@ -78,8 +105,6 @@
             </form>
         </div>
     }
+
 </body>
 </html>
-
-
-

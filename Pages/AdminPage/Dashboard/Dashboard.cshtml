@@ -1,0 +1,68 @@
+﻿@page
+@model DashboardModel
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<link rel="stylesheet" href="~/css/AdminPageCSS/Dashboard.css" />
+
+<div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">
+            <h2>Admin Panel</h2>
+        </div>
+        <nav class="nav">
+            <ul>
+                <li>
+                    <button class="nav-item active">
+                        Dashboard
+                    </button>
+                </li>
+                <li>
+                    <a asp-page="/AdminPage/Client/ClientPage" class="nav-item">
+                        Clients
+                    </a>
+                </li>
+                <li>
+                    <a href="/AdminPage/MembershipPage" class="nav-item">
+                        Memberships
+                    </a>
+                </li>
+                <li>
+                    <a href="/AdminPage/ActivityPage" class="nav-item">
+                        Activities
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <h1>Welcome, Admin</h1>
+            <form method="post" asp-page-handler="Logout" style="display: inline;">
+                <button type="submit" class="logout-button">Logout</button>
+            </form>
+        </header>
+
+        <div class="cards-container">
+            <div class="card">
+                <h3>Total Clients</h3>
+                <p>@Model.TotalClients</p>
+            </div>
+
+            <div class="card">
+                <h3>Total Memberships</h3>
+                <p>@Model.TotalMemberships</p>
+            </div>
+
+            <div class="card">
+                <h3>Total Activities</h3>
+                <p>@Model.TotalActivities</p>
+            </div>
+        </div>
+    </div>
+</div>
