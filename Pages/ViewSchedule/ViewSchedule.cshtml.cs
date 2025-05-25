@@ -1,5 +1,8 @@
+using GymSystem.Models;
+using GymSystem.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -11,13 +14,18 @@ namespace GymSystem.Pages.ViewSchedule
     public class ViewScheduleModel : PageModel
     {
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly ILogger<ViewScheduleModel> _logger;
+        private readonly IGymService _gymService;
 
-        public ViewScheduleModel(IHttpClientFactory httpClientFactory)
+        public ViewScheduleModel(IHttpClientFactory httpClientFactory, ILogger<ViewScheduleModel> logger, IGymService gymService)
         {
             _httpClientFactory = httpClientFactory;
+            _logger = logger;
+            _gymService = gymService;
         }
 
-        public List<Schedule> Schedules { get; set; } = new List<Schedule>();
+        public List<ActivityScheduleDto> Schedules { get; set; } = new List<ActivityScheduleDto>();
+
 
         public string ErrorMessage { get; set; } = string.Empty;
 
@@ -29,24 +37,17 @@ namespace GymSystem.Pages.ViewSchedule
 
             try
             {
-                var client = _httpClientFactory.CreateClient();
-                client.Timeout = TimeSpan.FromSeconds(10);
-                var response = await client.GetAsync("http://localhost:3003/activityschedule");
+                Schedules = await _gymService.GetActivityScheduleAsync();
 
-                if (response.IsSuccessStatusCode)
-                {
-                    var responseStream = await response.Content.ReadAsStreamAsync();
-                    var schedules = await JsonSerializer.DeserializeAsync<List<Schedule>>(responseStream);
-
-                    Schedules = schedules ?? new List<Schedule>();
-                }
-                else
-                {
-                    ErrorMessage = "Failed to fetch schedules.";
-                }
             }
-            catch (Exception)
+            catch (TaskCanceledException tex)
             {
+                _logger.LogError(tex, "Request timed out while fetching schedules.");
+                ErrorMessage = "Request timed out. Please try again later.";
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An unexpected error occurred while fetching schedules.");
                 ErrorMessage = "An unexpected error occurred while fetching data.";
             }
             finally
@@ -55,14 +56,6 @@ namespace GymSystem.Pages.ViewSchedule
             }
 
             return Page();
-        }
-
-        public class Schedule
-        {
-            public string ActivityName { get; set; }
-            public string DayOfWeek { get; set; }
-            public string StartHour { get; set; }
-            public string EndHour { get; set; }
         }
     }
 }

@@ -45,9 +45,9 @@
             @foreach (var membership in Model.MembershipData)
             {
                 <div class="card">
-                    <h3 class="activityName">@membership.ActivityName</h3>
-                    <p class="detail"><strong>Start Date:</strong> @membership.StartDate.ToString("yyyy-MM-dd")</p>
-                    <p class="detail"><strong>End Date:</strong> @membership.EndDate.ToString("yyyy-MM-dd")</p>
+                    <h3 class="activityName">@membership.MembershipType</h3>
+                    <p class="detail"><strong>Start Date:</strong> @membership.StartDate</p>
+                    <p class="detail"><strong>End Date:</strong> @membership.EndDate</p>
                     <p class="detail"><strong>Payment Method:</strong> @membership.PaymentMethod</p>
                     <p class="detail"><strong>Payment Amount:</strong> $@membership.Amount</p>
                 </div>
