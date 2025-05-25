@@ -1,0 +1,49 @@
+﻿@page
+@model GymSystem.Pages.ViewActivities.ViewActivitiesModel
+@{
+    ViewData["Title"] = "View Activities";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/PagesCSS/ViewActivities.css" />
+</head>
+<body class="container">
+    <h2>Available Activities</h2>
+
+    @if (!string.IsNullOrEmpty(Model.Error))
+    {
+        <p class="error-message">@Model.Error</p>
+    }
+    else if (Model.Loading)
+    {
+        <p class="loading-message">Loading...</p>
+    }
+    else if (Model.Activities.Count > 0)
+    {
+        <div class="activity-list">
+            @foreach (var activity in Model.Activities)
+            {
+                var imageSrc = Model.ActivityImages.ContainsKey(activity.activity_name)
+                ? Model.ActivityImages[activity.activity_name]
+                : Model.FallbackImage;
+
+                <div class="activity-card">
+                    <img src="@imageSrc" alt="@activity.activity_name" class="activity-image" />
+                    <div class="activity-details">
+                        <h3 class="activity-name">@activity.activity_name</h3>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <p class="no-results">No activities available.</p>
+    }
+</body>
+</html>

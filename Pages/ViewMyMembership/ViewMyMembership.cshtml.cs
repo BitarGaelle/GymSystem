@@ -1,3 +1,5 @@
+using GymSystem.Models;
+using GymSystem.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
@@ -12,16 +14,20 @@ namespace GymSystem.Pages.ViewMyMembership {
     public class ViewMyMembershipModel : PageModel
     {
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IConfiguration _configuration;
+        private readonly IGymService _gymService;
 
-        public ViewMyMembershipModel(IHttpClientFactory httpClientFactory)
+        public ViewMyMembershipModel(IHttpClientFactory httpClientFactory, IConfiguration configuration, IGymService gymService)
         {
             _httpClientFactory = httpClientFactory;
+            _configuration = configuration;
+            _gymService = gymService;
         }
 
         [BindProperty]
         public string Email { get; set; } = string.Empty;
 
-        public List<Membership> MembershipData { get; set; } = new List<Membership>();
+        public List<MembershipDetailsDto> MembershipData { get; set; } = new List<MembershipDetailsDto>();
 
         public string ErrorMessage { get; set; } = string.Empty;
         public bool HasSearched { get; set; } = false;
@@ -41,26 +47,7 @@ namespace GymSystem.Pages.ViewMyMembership {
             Loading = true;
             try
             {
-                var client = _httpClientFactory.CreateClient();
-                var response = await client.GetAsync($"http://localhost:3003/membership?email={Email}");
-                if (response.IsSuccessStatusCode)
-                {
-                    var responseStream = await response.Content.ReadAsStreamAsync();
-                    var responseData = await JsonSerializer.DeserializeAsync<ApiResponse>(responseStream);
-
-                    if (responseData != null)
-                    {
-                        MembershipData = responseData.Memberships;
-                    }
-                    else
-                    {
-                        ErrorMessage = "No membership data found.";
-                    }
-                }
-                else
-                {
-                    ErrorMessage = "No membership found for this email.";
-                }
+                MembershipData = await _gymService.GetMembershipByEmailAsync(Email);
             }
             catch (Exception ex)
             {
@@ -74,19 +61,6 @@ namespace GymSystem.Pages.ViewMyMembership {
             return Page();
         }
 
-        public class Membership
-        {
-            public string ActivityName { get; set; }
-            public DateTime StartDate { get; set; }
-            public DateTime EndDate { get; set; }
-            public string PaymentMethod { get; set; }
-            public decimal Amount { get; set; }
-        }
-
-        public class ApiResponse
-        {
-            public List<Membership> Memberships { get; set; }
-        }
     }
 
 
