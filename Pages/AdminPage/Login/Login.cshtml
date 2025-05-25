@@ -1,0 +1,40 @@
+﻿@page
+@model LoginModel
+@{
+    ViewData["Title"] = "Admin Login";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/AdminPageCSS/Login.css" />
+</head>
+
+<body class="loginPageWrapper">
+    <div class="loginContainer">
+        <div class="loginbox">
+            <h2>Admin Login</h2>
+            @if (!string.IsNullOrEmpty(Model.Error))
+            {
+                <div class="error">@Model.Error</div>
+            }
+            <form method="post">
+                <div class="inputGroup">
+                    <label asp-for="Username">Username</label>
+                    <input asp-for="Username" class="form-control" required />
+                    <span asp-validation-for="Username"></span>
+                </div>
+                <div class="inputGroup">
+                    <label asp-for="Password">Password</label>
+                    <input asp-for="Password" type="password" class="form-control" required />
+                    <span asp-validation-for="Password"></span>
+                </div>
+                <button type="submit" class="loginButton">Login</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

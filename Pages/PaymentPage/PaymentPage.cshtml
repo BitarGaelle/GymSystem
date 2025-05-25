@@ -1,0 +1,39 @@
+﻿@page
+@model YourNamespace.Pages.UserPage.PaymentPageModel
+@{
+    ViewData["Title"] = "Credit Card Payment";
+}
+
+<link rel="stylesheet" href="~/css/PaymentPageStyles.css" />
+
+<div class="paymentForm">
+    <form method="post">
+        <fieldset>
+            <legend>Credit Card Payment</legend>
+
+            <label asp-for="CardholderName">Cardholder Name</label>
+            <input asp-for="CardholderName" class="form-control" placeholder="Enter your full name" required />
+
+            <label asp-for="CardNumber">Card Number</label>
+            <input asp-for="CardNumber" class="form-control" placeholder="1234 5678 9101 1121" required
+                   maxlength="19" pattern="\d{4}\s?\d{4}\s?\d{4}\s?\d{4}" />
+
+            <label asp-for="ExpiryDate">Expiry Date</label>
+            <input asp-for="ExpiryDate" type="month" class="form-control" required />
+
+            <label asp-for="CVV">CVV</label>
+            <input asp-for="CVV" class="form-control" placeholder="123" required maxlength="4" pattern="\d{3,4}" />
+
+            <label asp-for="BillingAddress">Billing Address</label>
+            <textarea asp-for="BillingAddress" class="form-control" placeholder="Enter your billing address" required></textarea>
+
+            <button type="submit" class="btn btn-primary">Pay Now</button>
+        </fieldset>
+    </form>
+</div>
+
+<!-- Optional JavaScript for handling alerts -->
+@if (TempData["PaymentMessage"] != null)
+{
+    <script>alert('@TempData["PaymentMessage"]');</script>
+}

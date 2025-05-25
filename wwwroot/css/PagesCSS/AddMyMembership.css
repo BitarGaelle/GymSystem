@@ -1,4 +1,5 @@
 /* Reset and apply full-page background */
+@import url('addmymembership.css');
 .addmembershippage {
     background-image: url('/images/backgroundAddMemb.jpg');
     background-size: cover;
