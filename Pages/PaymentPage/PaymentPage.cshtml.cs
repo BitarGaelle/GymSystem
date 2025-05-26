@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 
-namespace YourNamespace.Pages.UserPage
+namespace GymSystem.Pages.PaymentPage
 {
     public class PaymentPageModel : PageModel
     {
@@ -36,7 +36,7 @@ namespace YourNamespace.Pages.UserPage
             }
 
             TempData["PaymentMessage"] = "Payment successful 💪";
-            return RedirectToPage("/homepage/home");
+            return RedirectToPage("/HomePage/Home");
         }
     }
 }

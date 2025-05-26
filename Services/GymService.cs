@@ -8,7 +8,7 @@ namespace GymSystem.Services
     public interface IGymService
     {
         Task<Dictionary<string, int>> GetMembershipPricesAsync();
-        Task<int> AddMembershipAsync(AddMembershipDto dto);
+        Task<int> AddMembershipAsync(AddMembershipDto dto, int totalPrice, string paymentMethod);
         Task<List<MembershipDetailsDto>> GetMembershipByEmailAsync(string email);
         Task<List<ActivityScheduleDto>> GetActivityScheduleAsync();
         Task<TotalCountDto> GetTotalCountAsync();
@@ -39,7 +39,7 @@ namespace GymSystem.Services
             return activities.ToDictionary(a => a.activity_name, a => a.act_price);
         }
 
-        public async Task<int> AddMembershipAsync(AddMembershipDto dto)
+        public async Task<int> AddMembershipAsync(AddMembershipDto dto, int totalPrice, string paymentMethod)
         {
             using var transaction = await _context.Database.BeginTransactionAsync();
             try
@@ -86,8 +86,8 @@ namespace GymSystem.Services
                         var existingStart = DateTime.Parse(m.start_date);
                         var existingEnd = DateTime.Parse(m.end_date);
 
-                        return (dtoStartDate >= existingStart && dtoStartDate <= existingEnd)||
-                               (dtoEndDate >= existingStart && dtoEndDate <= existingEnd)||
+                        return (dtoStartDate >= existingStart && dtoStartDate <= existingEnd) ||
+                               (dtoEndDate >= existingStart && dtoEndDate <= existingEnd) ||
                                (dtoStartDate <= existingStart && dtoEndDate >= existingEnd);
                     });
 
@@ -98,7 +98,7 @@ namespace GymSystem.Services
                 var membership = new Membership
                 {
                     membership_type = dto.MembershipType,
-                    price = dto.TotalPrice,
+                    price = totalPrice.ToString(),
                     start_date = dto.StartDate,
                     end_date = dto.EndDate,
                     client_id = client.client_id,
@@ -111,8 +111,8 @@ namespace GymSystem.Services
                 // Create payment
                 var payment = new Payment
                 {
-                    payment_method = dto.PaymentMethod,
-                    amount = decimal.Parse(dto.TotalPrice),
+                    payment_method = paymentMethod,
+                    amount = decimal.Parse(totalPrice.ToString()),
                     payment_date = DateTime.Now,
                     membership_id = membership.membership_id
                 };
@@ -211,7 +211,7 @@ namespace GymSystem.Services
                     .Where(p => p.membership_id == membershipId)
                     .ToListAsync();
 
-                _context.payment.RemoveRange(payments);    
+                _context.payment.RemoveRange(payments);
 
                 // Delete membership
                 var membership = await _context.membership

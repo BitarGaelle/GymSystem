@@ -1,12 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
-using System.Text.Json;
-using System.Text;
-using System.Net.Http;
+using GymSystem.Services;
+using GymSystem.Models;
 
 public class AddMyMembershipModel : PageModel
 {
+    private readonly IGymService _gymService;
+
+    public AddMyMembershipModel(IGymService gymService)
+    {
+        _gymService = gymService;
+    }
+
     [BindProperty]
     public string FirstName { get; set; } = "";
 
@@ -37,8 +43,8 @@ public class AddMyMembershipModel : PageModel
     [BindProperty]
     public bool IsPriceUpdate { get; set; } = false;
 
-    public Dictionary<string, decimal> Prices { get; set; } = new();
-    public decimal TotalPrice { get; set; }
+    public Dictionary<string, int> Prices { get; set; } = new();
+    public int TotalPrice { get; set; }
     public bool ShowForm { get; set; } = true;
 
     public async Task OnGetAsync()
@@ -52,20 +58,24 @@ public class AddMyMembershipModel : PageModel
     {
         await FetchPricesAsync();
 
-        // Handle price update from membership type change
+        // Update end date when start date changes
+        UpdateEndDate();
+
+        // Recalculate total price based on membership type
+        CalculateTotalPrice();
+
         if (IsPriceUpdate)
         {
-            CalculateTotalPrice();
-            UpdateEndDate();
             return Page();
         }
 
         return Page();
     }
 
+
     public async Task<IActionResult> OnPostReset()
     {
-        // Reset all form fields
+        // Reset all form fields to their default values
         FirstName = "";
         LastName = "";
         Address = "";
@@ -74,12 +84,12 @@ public class AddMyMembershipModel : PageModel
         MembershipType = "";
         PaymentMethod = "creditCard";
         StartDate = DateTime.Today;
-        EndDate = StartDate.AddMonths(1);
+        EndDate = DateTime.Today.AddMonths(1);
         ShowForm = true;
+        IsPriceUpdate = false;
 
         await FetchPricesAsync();
         CalculateTotalPrice();
-        UpdateEndDate();
 
         return RedirectToPage();
     }
@@ -96,30 +106,35 @@ public class AddMyMembershipModel : PageModel
             return Page();
         }
 
-        var client = new
+        AddMembershipDto membershipDto = new AddMembershipDto
         {
-            client_fname = FirstName,
-            client_lname = LastName,
-            address = Address,
-            email = Email,
-            phone = Contact,
-            membership_type = MembershipType,
-            payment_method = PaymentMethod,
-            total_price = TotalPrice,
-            start_date = StartDate.ToString("yyyy-MM-dd"),
-            end_date = EndDate.ToString("yyyy-MM-dd")
+            ClientFname = FirstName,
+            ClientLname = LastName,
+            Address = Address,
+            Email = Email,
+            Phone = Contact,
+            MembershipType = MembershipType,
+            StartDate = StartDate.ToString("yyyy-MM-dd"),
+            EndDate = EndDate.ToString("yyyy-MM-dd"),
+            TotalPrice = TotalPrice.ToString(),
+            PaymentMethod = PaymentMethod
         };
 
         try
         {
-            using var http = new HttpClient();
-            var content = new StringContent(JsonSerializer.Serialize(client), Encoding.UTF8, "application/json");
-            var response = await http.PostAsync("http://localhost:3003/client", content);
+            int result = await _gymService.AddMembershipAsync(membershipDto, TotalPrice, PaymentMethod);
 
-            if (response.IsSuccessStatusCode)
+            if (result > 0)
             {
-                ShowForm = false;
-                return RedirectToPage("../PaymentPage/PaymentPage", new { email = Email, amount = TotalPrice });
+                if (PaymentMethod == "creditCard")
+                {
+                    return RedirectToPage("/PaymentPage/PaymentPage", new { email = Email, amount = TotalPrice });
+                }
+                else // onSite payment
+                {
+                    ShowForm = false;
+                    return Page();
+                }
             }
 
             ModelState.AddModelError("", "Failed to process your membership. Please try again.");
@@ -136,15 +151,11 @@ public class AddMyMembershipModel : PageModel
     {
         try
         {
-            using var http = new HttpClient();
-            var response = await http.GetAsync("http://localhost:3003/membershipprices");
-            response.EnsureSuccessStatusCode();
-            var json = await response.Content.ReadAsStringAsync();
-            Prices = JsonSerializer.Deserialize<Dictionary<string, decimal>>(json) ?? new Dictionary<string, decimal>();
+            Prices = await _gymService.GetMembershipPricesAsync();
         }
         catch
         {
-            Prices = new Dictionary<string, decimal>();
+            Prices = new Dictionary<string, int>();
         }
     }
 
