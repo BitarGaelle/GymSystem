@@ -13,10 +13,10 @@
         </div>
         <nav class="nav">
             <ul>
-                <li><a asp-page="/AdminPage/Dashboard" class="navItem">Dashboard</a></li>
-                <li><a asp-page="/AdminPage/ClientPage" class="navItem">Clients</a></li>
-                <li><a asp-page="/AdminPage/MembershipPage" class="navItem">Memberships</a></li>
-                <li><a asp-page="/AdminPage/ActivityPage" class="navItem">Activities</a></li>
+                <li><a asp-page="/AdminPage/Dashboard/Dashboard" class="navItem">Dashboard</a></li>
+                <li><a asp-page="/AdminPage/ClientPage/ClientPage" class="navItem">Clients</a></li>
+                <li><a asp-page="/AdminPage/MembershipPage/MembershipPage" class="navItem">Memberships</a></li>
+                <li><a asp-page="/AdminPage/ActivityPage/ActivityPage" class="navItem">Activities</a></li>
             </ul>
         </nav>
     </aside>
@@ -51,11 +51,11 @@
                     @foreach (var client in Model.FilteredClients)
                     {
                         <tr>
-                            <td>@client.FirstName</td>
-                            <td>@client.LastName</td>
-                            <td>@client.Address</td>
-                            <td>@client.Phone</td>
-                            <td>@client.Email</td>
+                            <td>@client.client_fname</td>
+                            <td>@client.client_lname</td>
+                            <td>@client.address</td>
+                            <td>@client.phone</td>
+                            <td>@client.email</td>
                         </tr>
                     }
                 </tbody>

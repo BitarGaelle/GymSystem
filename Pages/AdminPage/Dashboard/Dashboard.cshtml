@@ -20,17 +20,17 @@
                     </button>
                 </li>
                 <li>
-                    <a asp-page="/AdminPage/Client/ClientPage" class="nav-item">
+                    <a asp-page="/AdminPage/ClientPage/ClientPage" class="nav-item">
                         Clients
                     </a>
                 </li>
                 <li>
-                    <a href="/AdminPage/MembershipPage" class="nav-item">
+                    <a href="/AdminPage/MembershipPage/MembershipPage" class="nav-item">
                         Memberships
                     </a>
                 </li>
                 <li>
-                    <a href="/AdminPage/ActivityPage" class="nav-item">
+                    <a href="/AdminPage/ActivityPage/ActivityPage" class="nav-item">
                         Activities
                     </a>
                 </li>
@@ -44,7 +44,8 @@
         <header class="header">
             <h1>Welcome, Admin</h1>
             <form method="post" asp-page-handler="Logout" style="display: inline;">
-                <button type="submit" class="logout-button">Logout</button>
+                <button type="button" class="logout-button" onclick="window.location.href='/HomePage/Home';">Logout</button>
+
             </form>
         </header>
 
