@@ -101,6 +101,9 @@ textarea {
     max-height: 150px;
 }
 
+thankyou {
+    color: white;
+}
 /* Responsive adjustments */
 @media (max-width: 600px) {
     .App {

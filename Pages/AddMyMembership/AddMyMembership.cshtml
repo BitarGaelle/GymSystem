@@ -34,7 +34,8 @@
                 <input type="tel" id="Contact" name="Contact" value="@Model.Contact" required />
 
                 <label for="MembershipType">Select Membership*</label>
-                <select id="MembershipType" name="MembershipType" required onchange="document.getElementById('priceUpdateInput').value='true'; this.form.submit();">
+                <select id="MembershipType" name="MembershipType" required onchange="updatePrice()">
+                    >>
 
                     @if (string.IsNullOrEmpty(Model.MembershipType))
                     {
@@ -61,7 +62,8 @@
                 <label for="StartDate">Start Date*</label>
                 <input type="date" id="StartDate" name="StartDate"
                        value="@Model.StartDate.ToString("yyyy-MM-dd")"
-                       min="@DateTime.Today.ToString("yyyy-MM-dd")" required />
+                       min="@DateTime.Today.ToString("yyyy-MM-dd")" required
+                       onchange="updateEndDate()" />
 
                 <label for="EndDate">End Date*</label>
                 <input type="date" id="EndDate" name="EndDate"
@@ -92,19 +94,28 @@
                 <input type="hidden" id="priceUpdateInput" name="IsPriceUpdate" value="false" />
 
                 <button type="submit" asp-page-handler="Reset">Reset</button>
-                <button type="submit" name="handler" value="Submit">Proceed to Payment</button>
+                <button type="submit" asp-page-handler="Submit">Proceed to Payment</button>
             </form>
         </div>
     }
     else
     {
         <div>
-            <h2>Thank You for Choosing Us</h2>
-            <form method="get" asp-page="/UserPage/ViewMyMembership">
+            <form method="get" asp-page="/ViewMyMembership/ViewMyMembership">
                 <button type="submit">View My Membership</button>
             </form>
         </div>
     }
 
+    <script>
+        function updatePrice() {
+            document.getElementById('priceUpdateInput').value = 'true';
+            document.getElementById('membershipForm').submit();
+        }
+
+        function updateEndDate() {
+            document.getElementById('membershipForm').submit();
+        }
+    </script>
 </body>
 </html>
