@@ -1,3 +1,4 @@
+using GymSystem.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.Json;
@@ -8,11 +9,13 @@ namespace GymSystem.Pages.AdminPage
     {
         private readonly HttpClient _httpClient;
         private readonly ILogger<DashboardModel> _logger;
+        private readonly IGymService _gymServices;
 
-        public DashboardModel(HttpClient httpClient, ILogger<DashboardModel> logger)
+        public DashboardModel(HttpClient httpClient, ILogger<DashboardModel> logger, IGymService gymServices)
         {
             _httpClient = httpClient;
             _logger = logger;
+            _gymServices = gymServices;
         }
 
         public int TotalClients { get; set; }
@@ -24,42 +27,17 @@ namespace GymSystem.Pages.AdminPage
             await FetchDashboardData();
         }
 
-        public async Task<IActionResult> OnPostLogoutAsync()
-        {
-            // Clear any authentication cookies or session data
-            HttpContext.Session.Clear();
-
-            // If using Cookie Authentication
-            // await HttpContext.SignOutAsync();
-
-            return RedirectToPage("/Index"); // or wherever your login page is
-        }
 
         private async Task FetchDashboardData()
         {
             try
             {
-                var response = await _httpClient.GetAsync("http://localhost:3003/totalcount");
 
-                if (response.IsSuccessStatusCode)
-                {
-                    var content = await response.Content.ReadAsStringAsync();
-                    var data = JsonSerializer.Deserialize<DashboardData>(content, new JsonSerializerOptions
-                    {
-                        PropertyNameCaseInsensitive = true
-                    });
+                 var totalCounts = await _gymServices.GetTotalCountAsync();
 
-                    if (data != null)
-                    {
-                        TotalClients = data.TotalClients;
-                        TotalMemberships = data.TotalMemberships;
-                        TotalActivities = data.TotalActivities;
-                    }
-                }
-                else
-                {
-                    _logger.LogWarning("Failed to fetch dashboard data. Status: {StatusCode}", response.StatusCode);
-                }
+                TotalClients = totalCounts.TotalClients;
+                TotalMemberships = totalCounts.TotalMemberships;
+                TotalActivities = totalCounts.TotalActivities;
             }
             catch (Exception ex)
             {
