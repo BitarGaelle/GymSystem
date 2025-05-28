@@ -1,10 +1,7 @@
 using GymSystem.Services;
 using GymSystem.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text.Json;
-using System.Threading.Tasks;
+
 
 namespace GymSystem.Pages.ViewActivities
 {
@@ -50,8 +47,6 @@ namespace GymSystem.Pages.ViewActivities
             try
             {
                 Activities = await _gymService.GetAllActivitiesAsync();
-
-
             }
             catch
             {
