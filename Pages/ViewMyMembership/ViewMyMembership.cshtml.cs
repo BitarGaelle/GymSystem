@@ -2,11 +2,7 @@ using GymSystem.Models;
 using GymSystem.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text.Json;
-using System.Threading.Tasks;
+
 
 namespace GymSystem.Pages.ViewMyMembership {
 
