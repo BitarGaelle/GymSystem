@@ -3,7 +3,7 @@ name: Deploy .NET App to EC2
 on:
   push:
     branches:
-      - main
+      - Gaelle  # or replace with your branch name if different
 
 jobs:
   build-and-deploy:
@@ -37,12 +37,11 @@ jobs:
           target: "/home/ubuntu/GymSystem"
 
       - name: Restart systemd service
-        uses: appleboy/ssh-action@v0.1.6
+        uses: appleboy/ssh-action@0.1.6
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_KEY }}
           script: |
             sudo systemctl restart gymsystem
-            sudo systemctl status gymsystem --no-pager
-
+            sudo systemctl status gymsystem --no-page
