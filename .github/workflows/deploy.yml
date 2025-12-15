@@ -6,11 +6,11 @@ on:
       - Gaelle
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Setup .NET
@@ -27,6 +27,15 @@ jobs:
       - name: Publish project
         run: dotnet publish -c Release -o publish
 
+      - name: Ensure target folder exists on EC2
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_KEY }}
+          script: |
+            mkdir -p /home/ubuntu/GymSystem
+
       - name: Copy files to EC2
         uses: appleboy/scp-action@v0.1.3
         with:
@@ -36,7 +45,7 @@ jobs:
           source: "publish/*"
           target: "/home/ubuntu/GymSystem"
 
-      - name: Restart systemd service
+      - name: Restart application
         uses: appleboy/ssh-action@v0.1.6
         with:
           host: ${{ secrets.EC2_HOST }}
@@ -44,4 +53,4 @@ jobs:
           key: ${{ secrets.EC2_KEY }}
           script: |
             sudo systemctl restart gymsystem
-            sudo systemctl status gymsystem --no-page
+            sudo systemctl status gymsystem --no-pager
