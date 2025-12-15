@@ -36,7 +36,7 @@ jobs:
         username: ${{ secrets.EC2_USER }}
         key: ${{ secrets.EC2_KEY }}
         source: "./publish/*"
-        target: "/tmp/app_deploy"
+        target:  "/home/ubuntu/GymSystem"
     - name: Execute Remote Commands
       uses: appleboy/ssh-action@v1.0.3
       with:
@@ -44,12 +44,9 @@ jobs:
         username: ${{ secrets.EC2_USER }}
         key: ${{ secrets.EC2_KEY }}
         script: |
-          sudo systemctl stop gym.service
-          mkdir -p /home/ubuntu/GymSystem
-          sudo rm -rf /home/ubuntu/GymSystem/*
-          sudo cp -r /tmp/app_deploy/* /home/ubuntu/GymSystem/
-          sudo chown -R ubuntu:ubuntu /home/ubuntu/GymSystem
-          sudo systemctl start gym.service
+          sudo systemctl daemon-reload
+          sudo systemctl restart gym.service
+          sudo systemctl status gym.service --no-pager
     - name: Revoke Runner IP
       if: always()
       run: |
